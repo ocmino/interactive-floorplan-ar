@@ -19,7 +19,7 @@ import { Modal } from "@mantine/core";
 const t = new Vector3();
 
 const defaultPosition = {
-  position: [300, 300, 0],
+  position: [200, 500, 0],
   target: [0, 0, 0],
 };
 
