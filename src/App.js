@@ -13,6 +13,8 @@ import Apartment from "./Apartment";
 import { easeCubicInOut } from "d3-ease";
 import { Button } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
+import { Modal } from "@mantine/core";
 
 const t = new Vector3();
 
@@ -62,7 +64,7 @@ function AnimateEyeToTarget({ position, target }) {
   const s = useSpring({
     from: defaultPosition,
     // slow animation with easeCubicInOut
-    config: { duration: 6000, easing: easeCubicInOut },
+    config: { duration: 7000, easing: easeCubicInOut },
     onStart: () => {
       if (!controls) return;
       controls.enabled = false;
@@ -118,7 +120,7 @@ function Thing() {
 
 export default function App() {
   const [cameraSettings, setCameraSettings] = useState(defaultPosition);
-
+  const [opened, { open, close }] = useDisclosure(false);
   const [showSky, setShowSky] = useState(true);
   const [showEnvironment, setShowEnvironment] = useState(false);
 
@@ -168,7 +170,7 @@ export default function App() {
     left: 0,
     right: 0,
     margin: "0 auto",
-    maxWidth: "90vw",
+    maxWidth: "100vw",
   };
 
   const currentButtonStyle = isMobile ? buttonStyleMobile : buttonStyle;
@@ -202,6 +204,34 @@ export default function App() {
           Balcony
         </Button>
       </div>
+      <Modal opened={opened} onClose={close} fullScreen>
+        <model-viewer
+          style={{ width: "100vw", height: "80vh" }}
+          src="./Models/Apartment.glb"
+          alt="A 3D model of an apartment"
+          auto-rotate
+          camera-controls
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          environment-image="neutral"
+          exposure="0.5"
+          shadow-intensity="1"
+          shadow-softness="0.5"
+          ios-src="./Models/Apartment.usdz"
+        ></model-viewer>
+      </Modal>
+      <Button
+        onClick={open}
+        style={{
+          position: "absolute",
+          left: "10%",
+          top: "10%",
+          zIndex: 1,
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        AR
+      </Button>
     </div>
   );
 }
