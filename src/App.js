@@ -15,7 +15,13 @@ import { Button } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
-
+import {
+  TbBath,
+  TbBrandCouchdb,
+  TbView360,
+  TbToolsKitchen2,
+  TbSun,
+} from "react-icons/tb";
 const t = new Vector3();
 
 const defaultPosition = {
@@ -193,15 +199,24 @@ export default function App() {
       </Canvas>
       <div style={currentButtonStyle}>
         <Button onClick={() => handleButtonClick(defaultPosition)}>
-          Default
+          <TbView360 />
+          &nbsp;Default
         </Button>
-        <Button onClick={() => handleButtonClick(kitchen)}>Kitchen</Button>
+        <Button onClick={() => handleButtonClick(kitchen)}>
+          <TbToolsKitchen2 />
+          &nbsp;Kitchen
+        </Button>
         <Button onClick={() => handleButtonClick(livingRoom)}>
-          Living Room
+          <TbBrandCouchdb />
+          &nbsp;Living Room
         </Button>
-        <Button onClick={() => handleButtonClick(bathRoom)}>Bathroom</Button>
+        <Button onClick={() => handleButtonClick(bathRoom)}>
+          <TbBath />
+          &nbsp;Bathroom
+        </Button>
         <Button onClick={() => handleButtonClick(balcony, "Balcony")}>
-          Balcony
+          <TbSun />
+          &nbsp;Balcony
         </Button>
       </div>
       <Modal opened={opened} onClose={close} fullScreen>
