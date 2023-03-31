@@ -21,6 +21,7 @@ import {
   TbView360,
   TbToolsKitchen2,
   TbSun,
+  TbWalk,
 } from "react-icons/tb";
 import React from "react";
 
@@ -49,6 +50,11 @@ const bathRoom = {
 const balcony = {
   position: [0, 50, 210],
   target: [0, 50, 250],
+};
+
+const walk = {
+  position: [2, 50, -72],
+  target: [2, 50, -72],
 };
 
 const CameraWrapper = ({ cameraPosition, target }) => {
@@ -179,7 +185,7 @@ export default function App() {
     left: "50%",
     transform: "translateX(-50%)",
     width: "90%", // make the button width 90% of the screen width
-    maxWidth: "300px", 
+    maxWidth: "300px",
   };
 
   const currentButtonStyle = isMobile ? buttonStyleMobile : buttonStyle;
@@ -197,7 +203,6 @@ export default function App() {
           )}
         </Suspense>
         <Thing />
-
         <OrbitControls
           makeDefault
           enablePan={false}
@@ -242,6 +247,14 @@ export default function App() {
         >
           <TbSun />
           &nbsp;Balcony
+        </Button>
+        <Button
+          color="gray"
+          compact
+          onClick={() => handleButtonClick(walk, "Walk")}
+        >
+          <TbWalk />
+          &nbsp;Walk
         </Button>
       </div>
       <Modal opened={opened} onClose={close} fullScreen>
