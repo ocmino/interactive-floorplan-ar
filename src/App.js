@@ -26,7 +26,7 @@ const t = new Vector3();
 
 const defaultPosition = {
   position: [80, 400, 0],
-  target: [0, 0, 0],
+  target: [0, 50, 0],
 };
 
 const kitchen = {
@@ -41,7 +41,7 @@ const livingRoom = {
 
 const bathRoom = {
   position: [-4, 210, -200],
-  target: [-10, -10, -200],
+  target: [-4, 50, -200],
 };
 
 const balcony = {
@@ -194,27 +194,48 @@ export default function App() {
           )}
         </Suspense>
         <Thing />
-        <OrbitControls makeDefault enablePan={false} enableZoom={false} />
+        <OrbitControls
+          makeDefault
+          enablePan={false}
+          maxDistance={500}
+          maxPolarAngle={Math.PI / 2}
+        />
         <EyeAnimation cameraSettings={cameraSettings} />
       </Canvas>
       <div style={currentButtonStyle}>
-        <Button onClick={() => handleButtonClick(defaultPosition)}>
+        <Button
+          color="gray"
+          compact
+          onClick={() => handleButtonClick(defaultPosition)}
+        >
           <TbView360 />
           &nbsp;Default
         </Button>
-        <Button onClick={() => handleButtonClick(kitchen)}>
+        <Button color="gray" compact onClick={() => handleButtonClick(kitchen)}>
           <TbToolsKitchen2 />
           &nbsp;Kitchen
         </Button>
-        <Button onClick={() => handleButtonClick(livingRoom)}>
+        <Button
+          color="gray"
+          compact
+          onClick={() => handleButtonClick(livingRoom)}
+        >
           <TbBrandCouchdb />
           &nbsp;Living Room
         </Button>
-        <Button onClick={() => handleButtonClick(bathRoom)}>
+        <Button
+          color="gray"
+          compact
+          onClick={() => handleButtonClick(bathRoom)}
+        >
           <TbBath />
           &nbsp;Bathroom
         </Button>
-        <Button onClick={() => handleButtonClick(balcony, "Balcony")}>
+        <Button
+          color="gray"
+          compact
+          onClick={() => handleButtonClick(balcony, "Balcony")}
+        >
           <TbSun />
           &nbsp;Balcony
         </Button>
