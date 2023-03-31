@@ -22,6 +22,8 @@ import {
   TbToolsKitchen2,
   TbSun,
 } from "react-icons/tb";
+import React from "react";
+
 const t = new Vector3();
 
 const defaultPosition = {
@@ -41,7 +43,7 @@ const livingRoom = {
 
 const bathRoom = {
   position: [-4, 210, -200],
-  target: [-4, 50, -200],
+  target: [-25, 50, -200],
 };
 
 const balcony = {
@@ -155,29 +157,31 @@ export default function App() {
     gap: "1rem",
     padding: "1rem",
     position: "absolute",
-    bottom: 0,
+    bottom: "2%",
     left: "50%",
     transform: "translateX(-50%)",
   };
-
+  
   const buttonStyleMobile = {
     // mobile button style
     background: "rgba(255,255,255,0.5)",
     borderRadius: "1rem",
     boxShadow: "0 0 10px rgba(0,0,0,0.5)",
-    display: "flex",
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     gap: "0.5rem",
     padding: "0.5rem",
     position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    margin: "0 auto",
-    maxWidth: "100vw",
+    bottom: "2%",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "90%", // make the button width 90% of the screen width
+    maxWidth: "300px", // set a max-width of 300px to prevent the buttons from becoming too large on large screens
   };
+  
 
   const currentButtonStyle = isMobile ? buttonStyleMobile : buttonStyle;
 
@@ -194,6 +198,7 @@ export default function App() {
           )}
         </Suspense>
         <Thing />
+
         <OrbitControls
           makeDefault
           enablePan={false}
