@@ -2,6 +2,7 @@ import { Canvas, useThree } from "@react-three/fiber";
 import {
   ContactShadows,
   Environment,
+  FlyControls,
   OrbitControls,
   Sky,
 } from "@react-three/drei";
@@ -53,8 +54,8 @@ const balcony = {
 };
 
 const walk = {
-  position: [2, 50, -72],
-  target: [2, 50, -72],
+  position: [2, 50, -52],
+  target: [0, 50, 0],
 };
 
 const CameraWrapper = ({ cameraPosition, target }) => {
@@ -137,6 +138,7 @@ export default function App() {
   const [opened, { open, close }] = useDisclosure(false);
   const [showSky, setShowSky] = useState(true);
   const [showEnvironment, setShowEnvironment] = useState(false);
+  const [showSecondOrbitControls, setShowSecondOrbitControls] = useState(true);
 
   const handleButtonClick = (position, buttonType) => {
     setCameraSettings(position);
@@ -190,6 +192,11 @@ export default function App() {
 
   const currentButtonStyle = isMobile ? buttonStyleMobile : buttonStyle;
 
+  //TODO!!!!!!!!!!!!!!!!!!!!!!
+  // Kopiera player från Minecraft i en ny komponent, när användaren klickar på Walk
+  //så öppnas den Modal med samma lägenhet men bara med en spelare som går runt i lägenheten.
+  //Inga andra kameror
+
   return (
     <div className="App">
       <Canvas>
@@ -203,31 +210,55 @@ export default function App() {
           )}
         </Suspense>
         <Thing />
-        <OrbitControls
-          makeDefault
-          enablePan={false}
-          maxDistance={500}
-          maxPolarAngle={Math.PI / 2}
-        />
+        {showSecondOrbitControls && (
+          <OrbitControls
+            makeDefault
+            enablePan={false}
+            maxDistance={500}
+            maxPolarAngle={Math.PI / 2}
+          />
+        )}
+        {!showSecondOrbitControls && (
+          <FlyControls
+            movementSpeed={75}
+            rollSpeed={1.5}
+            dragToLook={true}
+            enablePan={false}
+          />
+        )}
+
         <EyeAnimation cameraSettings={cameraSettings} />
       </Canvas>
       <div style={currentButtonStyle}>
         <Button
           color="gray"
           compact
-          onClick={() => handleButtonClick(defaultPosition)}
+          onClick={() => {
+            handleButtonClick(defaultPosition, "Default");
+            setShowSecondOrbitControls(true);
+          }}
         >
           <TbView360 />
           &nbsp;Default
         </Button>
-        <Button color="gray" compact onClick={() => handleButtonClick(kitchen)}>
+        <Button
+          color="gray"
+          compact
+          onClick={() => {
+            handleButtonClick(kitchen, "Kitchen");
+            setShowSecondOrbitControls(true);
+          }}
+        >
           <TbToolsKitchen2 />
           &nbsp;Kitchen
         </Button>
         <Button
           color="gray"
           compact
-          onClick={() => handleButtonClick(livingRoom)}
+          onClick={() => {
+            handleButtonClick(livingRoom, "Living Room");
+            setShowSecondOrbitControls(true);
+          }}
         >
           <TbBrandCouchdb />
           &nbsp;Living Room
@@ -235,7 +266,10 @@ export default function App() {
         <Button
           color="gray"
           compact
-          onClick={() => handleButtonClick(bathRoom)}
+          onClick={() => {
+            handleButtonClick(bathRoom, "Bathroom");
+            setShowSecondOrbitControls(true);
+          }}
         >
           <TbBath />
           &nbsp;Bathroom
@@ -243,15 +277,22 @@ export default function App() {
         <Button
           color="gray"
           compact
-          onClick={() => handleButtonClick(balcony, "Balcony")}
+          onClick={() => {
+            handleButtonClick(balcony, "Balcony");
+            setShowSecondOrbitControls(true);
+          }}
         >
           <TbSun />
           &nbsp;Balcony
         </Button>
         <Button
-          color="gray"
+          //red if clicked, green if not
+          color={showSecondOrbitControls ? "gray" : "red"}
           compact
-          onClick={() => handleButtonClick(walk, "Walk")}
+          onClick={() => {
+            handleButtonClick(walk, "Walk");
+            setShowSecondOrbitControls(false);
+          }}
         >
           <TbWalk />
           &nbsp;Walk
