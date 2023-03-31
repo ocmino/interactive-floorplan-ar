@@ -247,7 +247,7 @@ export default function App() {
       <Modal opened={opened} onClose={close} fullScreen>
         <model-viewer
           style={{ width: "100vw", height: "80vh" }}
-          src="./Models/Apartment1.glb"
+          src="./Models/Apartment.glb"
           alt="A 3D model of an apartment"
           auto-rotate
           camera-controls
