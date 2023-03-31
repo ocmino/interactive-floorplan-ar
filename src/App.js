@@ -53,11 +53,6 @@ const balcony = {
   target: [0, 50, 250],
 };
 
-const walk = {
-  position: [2, 50, -52],
-  target: [0, 50, 0],
-};
-
 const CameraWrapper = ({ cameraPosition, target }) => {
   const { camera } = useThree();
   camera.position.set(...cameraPosition);
@@ -285,18 +280,7 @@ export default function App() {
           <TbSun />
           &nbsp;Balcony
         </Button>
-        <Button
-          //red if clicked, green if not
-          color={showSecondOrbitControls ? "gray" : "red"}
-          compact
-          onClick={() => {
-            handleButtonClick(walk, "Walk");
-            setShowSecondOrbitControls(false);
-          }}
-        >
-          <TbWalk />
-          &nbsp;Walk
-        </Button>
+        <WalkingMode />
       </div>
       <Modal opened={opened} onClose={close} fullScreen>
         <model-viewer
@@ -326,6 +310,29 @@ export default function App() {
       >
         AR
       </Button>
+     
     </div>
+  );
+}
+
+function WalkingMode() {
+  const [opened, { open, close }] = useDisclosure(false);
+  return (
+    <>
+      <Button
+        color={"gray"}
+        compact
+        onClick={open}
+      >
+        <TbWalk />
+        &nbsp;Walk
+      </Button>
+      <Modal
+        opened={opened}
+        onClose={close}
+        fullScreen
+        
+      >HEJ</Modal>
+    </>
   );
 }
