@@ -161,7 +161,7 @@ export default function App() {
     left: "50%",
     transform: "translateX(-50%)",
   };
-  
+
   const buttonStyleMobile = {
     // mobile button style
     background: "rgba(255,255,255,0.5)",
@@ -179,9 +179,8 @@ export default function App() {
     left: "50%",
     transform: "translateX(-50%)",
     width: "90%", // make the button width 90% of the screen width
-    maxWidth: "300px", // set a max-width of 300px to prevent the buttons from becoming too large on large screens
+    maxWidth: "300px", 
   };
-  
 
   const currentButtonStyle = isMobile ? buttonStyleMobile : buttonStyle;
 
