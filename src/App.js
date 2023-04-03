@@ -36,7 +36,7 @@ const defaultPosition = {
 
 const kitchen = {
   position: [2, 50, 2],
-  target: [0, 50, -52],
+  target: [0, 50, -2],
 };
 
 const livingRoom = {
@@ -75,7 +75,7 @@ function AnimateEyeToTarget({ position, target }) {
   const s = useSpring({
     from: defaultPosition,
     // slow animation with easeCubicInOut
-    config: { duration: 7000, easing: easeCubicInOut },
+    config: { duration: 4000, easing: easeCubicInOut },
     onStart: () => {
       if (!controls) return;
       controls.enabled = false;
@@ -323,8 +323,10 @@ function WalkingMode() {
         <TbWalk />
         &nbsp;Walk
       </Button>
-      <Modal opened={opened} onClose={close} fullScreen centered>
-        <WalkApp />
+      <Modal opened={opened} onClose={close} fullScreen centered height="100vh">
+        <div style={{ height: "93vh" }}>
+          <WalkApp />
+        </div>
       </Modal>
     </>
   );

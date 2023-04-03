@@ -620,6 +620,7 @@ export function Ground(props) {
       </group>
 
       <CuboidCollider args={[1000, 2, 1000]} position={[0, -2, 0]} />
+      
     </RigidBody>
   );
 }

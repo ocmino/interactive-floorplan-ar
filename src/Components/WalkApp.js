@@ -11,27 +11,26 @@ import "../App.css";
 
 export default function WalkApp() {
   return (
-    <div style={{ height: "100vh", width: "100vw" }}>
-      <KeyboardControls
-        map={[
-          { name: "forward", keys: ["ArrowUp", "w", "W"] },
-          { name: "backward", keys: ["ArrowDown", "s", "S"] },
-          { name: "left", keys: ["ArrowLeft", "a", "A"] },
-          { name: "right", keys: ["ArrowRight", "d", "D"] },
-          { name: "jump", keys: ["Space"] },
-        ]}
-      >
-        <Canvas shadows camera={{ fov: 45 }}>
-          <Sky />
-          <ambientLight intensity={0.3} />
-          <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
-          <Physics gravity={[0, -30, 0]}>
-            <Ground />
-            <Player />
-          </Physics>
-          <PointerLockControls />
-        </Canvas>
-      </KeyboardControls>
-    </div>
+    <KeyboardControls
+      map={[
+        { name: "forward", keys: ["ArrowUp", "w", "W"] },
+        { name: "backward", keys: ["ArrowDown", "s", "S"] },
+        { name: "left", keys: ["ArrowLeft", "a", "A"] },
+        { name: "right", keys: ["ArrowRight", "d", "D"] },
+        { name: "jump", keys: ["Space"] },
+        { name: "sprint", keys: ["ShiftLeft", "ShiftRight"]}
+      ]}
+    >
+      <Canvas shadows camera={{ fov: 45 }}>
+        <Sky />
+        <ambientLight intensity={0.3} />
+        <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
+        <Physics gravity={[0, -30, 0]}>
+          <Ground />
+          <Player />
+        </Physics>
+        <PointerLockControls />
+      </Canvas>
+    </KeyboardControls>
   );
 }
