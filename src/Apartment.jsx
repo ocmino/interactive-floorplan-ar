@@ -10,9 +10,11 @@ Title: Studio apartment (vray baked textures included)
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
+
 const Apartment = (props) => {
   const { nodes, materials } = useGLTF('/Models/Apartment.glb')
   return (
+
     <group {...props} dispose={null}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.05}>
         <group rotation={[-Math.PI, 0, 0]}>
@@ -277,6 +279,7 @@ const Apartment = (props) => {
         </group>
       </group>
     </group>
+
   )
 }
 

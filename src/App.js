@@ -25,6 +25,7 @@ import {
   TbWalk,
 } from "react-icons/tb";
 import React from "react";
+import WalkApp from "./Components/WalkApp";
 
 const t = new Vector3();
 
@@ -310,7 +311,6 @@ export default function App() {
       >
         AR
       </Button>
-     
     </div>
   );
 }
@@ -319,20 +319,13 @@ function WalkingMode() {
   const [opened, { open, close }] = useDisclosure(false);
   return (
     <>
-      <Button
-        color={"gray"}
-        compact
-        onClick={open}
-      >
+      <Button color={"gray"} compact onClick={open}>
         <TbWalk />
         &nbsp;Walk
       </Button>
-      <Modal
-        opened={opened}
-        onClose={close}
-        fullScreen
-        
-      >HEJ</Modal>
+      <Modal opened={opened} onClose={close} fullScreen centered>
+        <WalkApp />
+      </Modal>
     </>
   );
 }
