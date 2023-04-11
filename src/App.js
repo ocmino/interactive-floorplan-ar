@@ -358,6 +358,9 @@ import {
 import React from "react";
 import { OneRoomApartment } from "./OneRoomApartment";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Building from "./Components/Building";
+import FirstPage from "./Components/FirstPage";
+
 
 
 const t = new Vector3();
@@ -519,7 +522,7 @@ function Experience() {
       <Canvas camera={{near: 10, far: 1000, fov: 75}}>
 
         <Suspense fallback={null}>
-         <Environment preset="park" />
+         <Environment preset="sunset" background={true} blur={1} />
         </Suspense>
         <Thing />
         {showSecondOrbitControls && (
@@ -635,7 +638,9 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Experience />} />
+      <Route path="/" element={<FirstPage />} />
+        <Route path="/apartment" element={<Experience />} />
+        <Route path="/building" element={<Building />} />
       </Routes>
     </Router>
   )
