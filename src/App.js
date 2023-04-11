@@ -612,7 +612,7 @@ function Experience() {
           exposure="0.5"
           shadow-intensity="1"
           shadow-softness="0.5"
-          //ios-src="./Models/Apartment.usdz"
+          ios-src="./Models/Apartment.usdz"
         ></model-viewer>
       </Modal>
       <Button
