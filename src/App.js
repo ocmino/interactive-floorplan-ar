@@ -338,7 +338,6 @@ import {
   ContactShadows,
   Environment,
   FlyControls,
-  Loader,
   OrbitControls,
 } from "@react-three/drei";
 import { Suspense, useState, useMemo } from "react";
@@ -519,7 +518,7 @@ function Experience() {
 
 
   return (
-    <><div className="App">
+    <div className="App">
       <Canvas camera={{ near: 10, far: 1000, fov: 75 }}>
 
         <Suspense fallback={null}>
@@ -629,7 +628,7 @@ function Experience() {
       >
         AR
       </Button>
-    </div><Loader /></>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Rosalia } from "../Rosalia";
-import { Environment, Loader, OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 
 const wrapperDiv = {
   width: "100vw",
@@ -9,7 +9,7 @@ const wrapperDiv = {
 
 const Building = () => {
   return (
-    <><div style={wrapperDiv}>
+    <div style={wrapperDiv}>
           <Canvas camera={{ position: [0, 50, 50] }} shadowMap>
               <OrbitControls
                   minDistance={50}
@@ -19,7 +19,7 @@ const Building = () => {
               <Environment preset="sunset" background={true} blur={1} />
               <Rosalia />
           </Canvas>
-      </div><Loader /></>
+      </div>
   );
 };
 
