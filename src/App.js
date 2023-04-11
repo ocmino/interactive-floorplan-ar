@@ -357,6 +357,8 @@ import {
 } from "react-icons/tb";
 import React from "react";
 import { OneRoomApartment } from "./OneRoomApartment";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 
 const t = new Vector3();
 
@@ -600,7 +602,7 @@ function Experience() {
       <Modal opened={opened} onClose={close} fullScreen>
         <model-viewer
           style={{ width: "100vw", height: "80vh" }}
-          src="./Models/OneRoomApartment.glb"
+          src="./Models/OneRoomApartment2.glb"
           alt="A 3D model of an apartment"
           auto-rotate
           camera-controls
@@ -631,6 +633,10 @@ function Experience() {
 
 export default function App() {
   return (
-    <Experience />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Experience />} />
+      </Routes>
+    </Router>
   )
 }
