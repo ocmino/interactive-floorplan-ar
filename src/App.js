@@ -339,13 +339,11 @@ import {
   Environment,
   FlyControls,
   OrbitControls,
-  Sky,
 } from "@react-three/drei";
 import { Suspense, useState, useMemo } from "react";
 import { useSpring, a } from "@react-spring/three";
 import { Vector3 } from "three";
 import "./App.css";
-import Apartment from "./Apartment";
 import { easeCubicInOut } from "d3-ease";
 import { Button } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
@@ -356,11 +354,8 @@ import {
   TbBrandCouchdb,
   TbView360,
   TbToolsKitchen2,
-  TbSun,
-  TbWalk,
 } from "react-icons/tb";
 import React from "react";
-import WalkApp from "./Components/WalkApp";
 import { OneRoomApartment } from "./OneRoomApartment";
 
 const t = new Vector3();
@@ -468,8 +463,8 @@ function Thing() {
 export default function App() {
   const [cameraSettings, setCameraSettings] = useState(defaultPosition);
   const [opened, { open, close }] = useDisclosure(false);
-  const [showSky, setShowSky] = useState(true);
-  const [showEnvironment, setShowEnvironment] = useState(false);
+  const [setShowSky] = useState(true);
+  const [setShowEnvironment] = useState(false);
   const [showSecondOrbitControls, setShowSecondOrbitControls] = useState(true);
 
   const handleButtonClick = (position, buttonType) => {
@@ -639,22 +634,5 @@ export default function App() {
         AR
       </Button>
     </div>
-  );
-}
-
-function WalkingMode() {
-  const [opened, { open, close }] = useDisclosure(false);
-  return (
-    <>
-      <Button color={"gray"} compact onClick={open}>
-        <TbWalk />
-        &nbsp;Walk
-      </Button>
-      <Modal opened={opened} onClose={close} fullScreen centered height="100vh">
-        <div style={{ height: "93vh" }}>
-          <WalkApp />
-        </div>
-      </Modal>
-    </>
   );
 }
