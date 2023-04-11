@@ -338,6 +338,7 @@ import {
   ContactShadows,
   Environment,
   FlyControls,
+  Loader,
   OrbitControls,
 } from "@react-three/drei";
 import { Suspense, useState, useMemo } from "react";
@@ -518,11 +519,11 @@ function Experience() {
 
 
   return (
-    <div className="App">
-      <Canvas camera={{near: 10, far: 1000, fov: 75}}>
+    <><div className="App">
+      <Canvas camera={{ near: 10, far: 1000, fov: 75 }}>
 
         <Suspense fallback={null}>
-         <Environment preset="sunset" background={true} blur={1} />
+          <Environment preset="sunset" background={true} blur={1} />
         </Suspense>
         <Thing />
         {showSecondOrbitControls && (
@@ -530,16 +531,14 @@ function Experience() {
             makeDefault
             enablePan={false}
             maxDistance={375}
-            maxPolarAngle={Math.PI / 2}
-          />
+            maxPolarAngle={Math.PI / 2} />
         )}
         {!showSecondOrbitControls && (
           <FlyControls
             movementSpeed={75}
             rollSpeed={1.5}
             dragToLook={true}
-            enablePan={false}
-          />
+            enablePan={false} />
         )}
 
         <EyeAnimation cameraSettings={cameraSettings} />
@@ -551,7 +550,7 @@ function Experience() {
           onClick={() => {
             handleButtonClick(defaultPosition, "Default");
             setShowSecondOrbitControls(true);
-          }}
+          } }
         >
           <TbView360 />
           &nbsp;Default
@@ -562,7 +561,7 @@ function Experience() {
           onClick={() => {
             handleButtonClick(kitchen, "Kitchen");
             setShowSecondOrbitControls(true);
-          }}
+          } }
         >
           <TbToolsKitchen2 />
           &nbsp;Kitchen
@@ -573,7 +572,7 @@ function Experience() {
           onClick={() => {
             handleButtonClick(livingRoom, "Living Room");
             setShowSecondOrbitControls(true);
-          }}
+          } }
         >
           <TbBrandCouchdb />
           &nbsp;Living Room
@@ -584,7 +583,7 @@ function Experience() {
           onClick={() => {
             handleButtonClick(bathRoom, "Bathroom");
             setShowSecondOrbitControls(true);
-          }}
+          } }
         >
           <TbBath />
           &nbsp;Bathroom
@@ -595,12 +594,12 @@ function Experience() {
           onClick={() => {
             handleButtonClick(bedRoom, "Bedroom");
             setShowSecondOrbitControls(true);
-          }}
+          } }
         >
           <TbBath />
           &nbsp;Bedroom
         </Button>
-       
+
       </div>
       <Modal opened={opened} onClose={close} fullScreen>
         <model-viewer
@@ -630,7 +629,7 @@ function Experience() {
       >
         AR
       </Button>
-    </div>
+    </div><Loader /></>
   );
 }
 
