@@ -460,22 +460,14 @@ function Thing() {
   );
 }
 
-export default function App() {
+function Experience() {
   const [cameraSettings, setCameraSettings] = useState(defaultPosition);
   const [opened, { open, close }] = useDisclosure(false);
-  const [setShowSky] = useState(true);
-  const [setShowEnvironment] = useState(false);
+
   const [showSecondOrbitControls, setShowSecondOrbitControls] = useState(true);
 
-  const handleButtonClick = (position, buttonType) => {
+  const handleButtonClick = (position) => {
     setCameraSettings(position);
-    if (buttonType === "Balcony") {
-      setShowSky(false);
-      setShowEnvironment(true);
-    } else {
-      setShowSky(true);
-      setShowEnvironment(false);
-    }
   };
 
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -635,4 +627,10 @@ export default function App() {
       </Button>
     </div>
   );
+}
+
+export default function App() {
+  return (
+    <Experience />
+  )
 }
