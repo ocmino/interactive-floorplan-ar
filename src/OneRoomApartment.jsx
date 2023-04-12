@@ -34,7 +34,7 @@ export function OneRoomApartment(props) {
   React.useEffect(() => {
     tl.current = gsap.timeline({ repeat: 0, yoyo: false });
     tl.current.to(ref.current.position, {
-      duration: 10,
+      duration: 5,
       x: 0,
       y: 0,
       z: 0,
@@ -48,7 +48,7 @@ export function OneRoomApartment(props) {
       dispose={null}
       scale={[25, 25, 25]}
       ref={ref}
-      position={[0, -250, 0]}
+      position={[0, -400, 0]}
     >
       <mesh
         geometry={nodes.AI37_008_lamp_002_11_Lamp_floor_0.geometry}

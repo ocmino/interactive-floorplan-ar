@@ -648,12 +648,15 @@ function Experience() {
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<FirstPage />} />
-        <Route path="/apartment" element={<Experience />} />
-        <Route path="/building" element={<Building />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<FirstPage />} />
+          <Route path="/apartment" element={<Experience />} />
+          <Route path="/building" element={<Building />} />
+        </Routes>
+      </Router>
+      <Loader />
+    </>
   );
 }

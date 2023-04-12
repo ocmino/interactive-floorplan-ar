@@ -14,33 +14,34 @@ const wrapperDiv = {
 const Building = () => {
   const [opened, { open, close }] = useDisclosure(false);
   return (
-    <><div style={wrapperDiv}>
-      <Canvas camera={{ position: [0, 50, 50] }} shadowMap>
-        <OrbitControls
-          minDistance={50}
-          maxDistance={1000}
-          minPolarAngle={Math.PI / 4}
-          maxPolarAngle={Math.PI / 2.2} />
-        <Environment preset="sunset" background={true} blur={1} />
-        <Rosalia />
-      </Canvas>
-      <Modal opened={opened} onClose={close} fullScreen>
-        <model-viewer
-          style={{ width: "100vw", height: "80vh" }}
-          src="./Models/Rosalia.glb"
-          alt="A 3D model of an apartment"
-          auto-rotate
-          camera-controls
-          ar
-          ar-modes="webxr scene-viewer quick-look"
-          environment-image="neutral"
-          exposure="0.5"
-          shadow-intensity="1"
-          shadow-softness="0.5"
-          ios-src="./Models/Rosalia.usdz"
-        ></model-viewer>
-      </Modal>
-      <Button
+    <>
+      <div style={wrapperDiv}>
+        <Canvas camera={{ position: [0, 50, 50] }} shadowMap>
+          <OrbitControls
+            minDistance={50}
+            maxDistance={1000}
+            maxPolarAngle={Math.PI / 2.2}
+          />
+          <Environment preset="sunset" background={true} blur={1} />
+          <Rosalia />
+        </Canvas>
+        <Modal opened={opened} onClose={close} fullScreen>
+          <model-viewer
+            style={{ width: "100vw", height: "80vh" }}
+            src="./Models/Rosalia.glb"
+            alt="A 3D model of an apartment"
+            auto-rotate
+            camera-controls
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            shadow-intensity="1"
+            shadow-softness="0.5"
+            ios-src="./Models/Rosalia.usdz"
+          ></model-viewer>
+        </Modal>
+        <Button
           onClick={open}
           style={{
             position: "absolute",
@@ -65,7 +66,9 @@ const Building = () => {
             Back
           </Button>
         </Link>
-    </div><Loader /></>
+      </div>
+      <Loader />
+    </>
   );
 };
 
