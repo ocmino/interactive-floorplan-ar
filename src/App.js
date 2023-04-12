@@ -544,6 +544,7 @@ function Experience() {
         </Canvas>
         <div style={currentButtonStyle}>
           <Button
+            className="Apartment__button"
             color="gray"
             compact
             onClick={() => {
@@ -555,6 +556,7 @@ function Experience() {
             &nbsp;Default
           </Button>
           <Button
+            className="Apartment__button"
             color="gray"
             compact
             onClick={() => {
@@ -566,6 +568,7 @@ function Experience() {
             &nbsp;Kitchen
           </Button>
           <Button
+            className="Apartment__button"
             color="gray"
             compact
             onClick={() => {
@@ -577,6 +580,7 @@ function Experience() {
             &nbsp;Living Room
           </Button>
           <Button
+            className="Apartment__button"
             color="gray"
             compact
             onClick={() => {
@@ -588,6 +592,7 @@ function Experience() {
             &nbsp;Bathroom
           </Button>
           <Button
+            className="Apartment__button"
             color="gray"
             compact
             onClick={() => {
@@ -616,6 +621,7 @@ function Experience() {
           ></model-viewer>
         </Modal>
         <Button
+          className="Apartment__button"
           onClick={open}
           style={{
             position: "absolute",
@@ -629,6 +635,7 @@ function Experience() {
         </Button>
         <Link to="/">
           <Button
+           className="Apartment__button"
             style={{
               position: "absolute",
               left: "10%",
