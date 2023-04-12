@@ -1,9 +1,10 @@
 import { Canvas } from "@react-three/fiber";
 import { Rosalia } from "../Rosalia";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment, Loader, OrbitControls } from "@react-three/drei";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
 import { Button } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 const wrapperDiv = {
   width: "100vw",
@@ -13,14 +14,13 @@ const wrapperDiv = {
 const Building = () => {
   const [opened, { open, close }] = useDisclosure(false);
   return (
-    <div style={wrapperDiv}>
+    <><div style={wrapperDiv}>
       <Canvas camera={{ position: [0, 50, 50] }} shadowMap>
         <OrbitControls
           minDistance={50}
           maxDistance={1000}
           minPolarAngle={Math.PI / 4}
-          maxPolarAngle={Math.PI / 2.2}
-        />
+          maxPolarAngle={Math.PI / 2.2} />
         <Environment preset="sunset" background={true} blur={1} />
         <Rosalia />
       </Canvas>
@@ -41,18 +41,31 @@ const Building = () => {
         ></model-viewer>
       </Modal>
       <Button
-        onClick={open}
-        style={{
-          position: "absolute",
-          left: "10%",
-          top: "10%",
-          zIndex: 1000,
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        AR
-      </Button>
-    </div>
+          onClick={open}
+          style={{
+            position: "absolute",
+            left: "90%",
+            top: "10%",
+            zIndex: 1,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          AR
+        </Button>
+        <Link to="/">
+          <Button
+            style={{
+              position: "absolute",
+              left: "10%",
+              top: "10%",
+              zIndex: 1,
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            Back
+          </Button>
+        </Link>
+    </div><Loader /></>
   );
 };
 

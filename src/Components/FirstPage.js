@@ -4,52 +4,16 @@ import "../App.css";
 
 const FirstPage = () => {
   return (
-    <div className="App">
-      <h1
-        style={{
-          position: "fixed",
-          top: "25%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        Please make a selection
-      </h1>
-      <div
-        style={{
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
+    <div className="FirstPage">
+      <div className="FirstPage__header" />
+      <div className="FirstPage__body">
         <Link to="/building">
-          <button
-            style={{
-              width: "200px",
-              height: "100px",
-              fontSize: "30px",
-              padding: "10px",
-              margin: "10px",
-            }}
-          >
-            Building
-          </button>
+          <button className="FirstPage__button">Building</button>
         </Link>
         <Link to="/apartment">
-          <button
-            style={{
-              width: "200px",
-              height: "100px",
-              fontSize: "30px",
-              padding: "10px",
-              margin: "10px",
-            }}
-          >
-            Apartment
-          </button>
+          <button className="FirstPage__button">Apartment</button>
         </Link>
-      </div>
+        </div>
     </div>
   );
 };

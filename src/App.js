@@ -332,12 +332,12 @@ function WalkingMode() {
 }
  */
 
-
 import { Canvas, useThree } from "@react-three/fiber";
 import {
   ContactShadows,
   Environment,
   FlyControls,
+  Loader,
   OrbitControls,
 } from "@react-three/drei";
 import { Suspense, useState, useMemo } from "react";
@@ -360,8 +360,7 @@ import { OneRoomApartment } from "./OneRoomApartment";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Building from "./Components/Building";
 import FirstPage from "./Components/FirstPage";
-
-
+import { Link } from "react-router-dom";
 
 const t = new Vector3();
 
@@ -453,7 +452,7 @@ function EyeAnimation({ cameraSettings }) {
 function Thing() {
   return (
     <>
-     <OneRoomApartment />
+      <OneRoomApartment />
       <ContactShadows
         position={[0, -1.5, 0]}
         scale={10}
@@ -516,119 +515,134 @@ function Experience() {
 
   const currentButtonStyle = isMobile ? buttonStyleMobile : buttonStyle;
 
-
   return (
-    <div className="App">
-      <Canvas camera={{ near: 10, far: 1000, fov: 75 }}>
+    <>
+      <div className="App">
+        <Canvas camera={{ near: 10, far: 1000, fov: 75 }}>
+          <Suspense fallback={null}>
+            <Environment preset="sunset" background={true} blur={1} />
+          </Suspense>
+          <Thing />
+          {showSecondOrbitControls && (
+            <OrbitControls
+              makeDefault
+              enablePan={false}
+              maxDistance={375}
+              maxPolarAngle={Math.PI / 2}
+            />
+          )}
+          {!showSecondOrbitControls && (
+            <FlyControls
+              movementSpeed={75}
+              rollSpeed={1.5}
+              dragToLook={true}
+              enablePan={false}
+            />
+          )}
 
-        <Suspense fallback={null}>
-          <Environment preset="sunset" background={true} blur={1} />
-        </Suspense>
-        <Thing />
-        {showSecondOrbitControls && (
-          <OrbitControls
-            makeDefault
-            enablePan={false}
-            maxDistance={375}
-            maxPolarAngle={Math.PI / 2} />
-        )}
-        {!showSecondOrbitControls && (
-          <FlyControls
-            movementSpeed={75}
-            rollSpeed={1.5}
-            dragToLook={true}
-            enablePan={false} />
-        )}
-
-        <EyeAnimation cameraSettings={cameraSettings} />
-      </Canvas>
-      <div style={currentButtonStyle}>
+          <EyeAnimation cameraSettings={cameraSettings} />
+        </Canvas>
+        <div style={currentButtonStyle}>
+          <Button
+            color="gray"
+            compact
+            onClick={() => {
+              handleButtonClick(defaultPosition, "Default");
+              setShowSecondOrbitControls(true);
+            }}
+          >
+            <TbView360 />
+            &nbsp;Default
+          </Button>
+          <Button
+            color="gray"
+            compact
+            onClick={() => {
+              handleButtonClick(kitchen, "Kitchen");
+              setShowSecondOrbitControls(true);
+            }}
+          >
+            <TbToolsKitchen2 />
+            &nbsp;Kitchen
+          </Button>
+          <Button
+            color="gray"
+            compact
+            onClick={() => {
+              handleButtonClick(livingRoom, "Living Room");
+              setShowSecondOrbitControls(true);
+            }}
+          >
+            <TbBrandCouchdb />
+            &nbsp;Living Room
+          </Button>
+          <Button
+            color="gray"
+            compact
+            onClick={() => {
+              handleButtonClick(bathRoom, "Bathroom");
+              setShowSecondOrbitControls(true);
+            }}
+          >
+            <TbBath />
+            &nbsp;Bathroom
+          </Button>
+          <Button
+            color="gray"
+            compact
+            onClick={() => {
+              handleButtonClick(bedRoom, "Bedroom");
+              setShowSecondOrbitControls(true);
+            }}
+          >
+            <TbBath />
+            &nbsp;Bedroom
+          </Button>
+        </div>
+        <Modal opened={opened} onClose={close} fullScreen>
+          <model-viewer
+            style={{ width: "100vw", height: "80vh" }}
+            src="./Models/OneRoomApartment2.glb"
+            alt="A 3D model of an apartment"
+            auto-rotate
+            camera-controls
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            shadow-intensity="1"
+            shadow-softness="0.5"
+            ios-src="./Models/One_Bedroom_Apartment.usdz"
+          ></model-viewer>
+        </Modal>
         <Button
-          color="gray"
-          compact
-          onClick={() => {
-            handleButtonClick(defaultPosition, "Default");
-            setShowSecondOrbitControls(true);
-          } }
+          onClick={open}
+          style={{
+            position: "absolute",
+            left: "90%",
+            top: "10%",
+            zIndex: 1,
+            transform: "translate(-50%, -50%)",
+          }}
         >
-          <TbView360 />
-          &nbsp;Default
+          AR
         </Button>
-        <Button
-          color="gray"
-          compact
-          onClick={() => {
-            handleButtonClick(kitchen, "Kitchen");
-            setShowSecondOrbitControls(true);
-          } }
-        >
-          <TbToolsKitchen2 />
-          &nbsp;Kitchen
-        </Button>
-        <Button
-          color="gray"
-          compact
-          onClick={() => {
-            handleButtonClick(livingRoom, "Living Room");
-            setShowSecondOrbitControls(true);
-          } }
-        >
-          <TbBrandCouchdb />
-          &nbsp;Living Room
-        </Button>
-        <Button
-          color="gray"
-          compact
-          onClick={() => {
-            handleButtonClick(bathRoom, "Bathroom");
-            setShowSecondOrbitControls(true);
-          } }
-        >
-          <TbBath />
-          &nbsp;Bathroom
-        </Button>
-        <Button
-          color="gray"
-          compact
-          onClick={() => {
-            handleButtonClick(bedRoom, "Bedroom");
-            setShowSecondOrbitControls(true);
-          } }
-        >
-          <TbBath />
-          &nbsp;Bedroom
-        </Button>
-
+        <Link to="/">
+          <Button
+            style={{
+              position: "absolute",
+              left: "10%",
+              top: "10%",
+              zIndex: 1,
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            Back
+          </Button>
+        </Link>
       </div>
-      <Modal opened={opened} onClose={close} fullScreen>
-        <model-viewer
-          style={{ width: "100vw", height: "80vh" }}
-          src="./Models/OneRoomApartment2.glb"
-          alt="A 3D model of an apartment"
-          auto-rotate
-          camera-controls
-          ar
-          ar-modes="webxr scene-viewer quick-look"
-          environment-image="neutral"
-          exposure="0.5"
-          shadow-intensity="1"
-          shadow-softness="0.5"
-          ios-src="./Models/One_Bedroom_Apartment.usdz"
-        ></model-viewer>
-      </Modal>
-      <Button
-        onClick={open}
-        style={{
-          position: "absolute",
-          left: "10%",
-          top: "10%",
-          zIndex: 1,
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        AR
-      </Button>
-    </div>
+      <Loader />
+    </>
   );
 }
 
@@ -636,10 +650,10 @@ export default function App() {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<FirstPage />} />
+        <Route path="/" element={<FirstPage />} />
         <Route path="/apartment" element={<Experience />} />
         <Route path="/building" element={<Building />} />
       </Routes>
     </Router>
-  )
+  );
 }
