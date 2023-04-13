@@ -612,7 +612,7 @@ function Experience() {
             auto-rotate
             camera-controls
             ar
-            ar-modes="webxr scene-viewer quick-look"
+            ar-modes="scene-viewer quick-look"
             environment-image="neutral"
             exposure="0.5"
             shadow-intensity="1"
