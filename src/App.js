@@ -612,13 +612,12 @@ function Experience() {
             auto-rotate
             camera-controls
             ar
-            ar-modes="scene-viewer quick-look"
+            ar-modes="webxr scene-viewer quick-look"
             environment-image="neutral"
             exposure="0.5"
             shadow-intensity="1"
             shadow-softness="0.5"
             ios-src="./Models/One_Bedroom_Apartment.usdz"
-            disable-occlusion 
           ></model-viewer>
         </Modal>
         <Button
