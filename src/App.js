@@ -618,7 +618,7 @@ function Experience() {
             shadow-intensity="1"
             shadow-softness="0.5"
             ios-src="./Models/One_Bedroom_Apartment.usdz"
-            alpha="1"
+            shadow-cast="false"
           ></model-viewer>
         </Modal>
         <Button
