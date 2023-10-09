@@ -520,7 +520,7 @@ function Experience() {
       <div className="App">
         <Canvas camera={{ near: 10, far: 1000, fov: 75 }}>
           <Suspense fallback={null}>
-            <Environment files="public/HDR/binnenalster_2k.hdr" background={true} blur={1} />
+            <Environment preset="sunset" background={true} blur={1} />
           </Suspense>
           <Thing />
           {showSecondOrbitControls && (
